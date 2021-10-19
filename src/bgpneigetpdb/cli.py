@@ -25,6 +25,7 @@ def parse_neighbours(neighbours):
         dict: Parsed neighbour list.
     """
     results = {}
+    pp.pprint(neighbours)
     for neighbour in neighbours:
         addr = ipaddress.ip_address(neighbour)
 
@@ -141,7 +142,7 @@ def do_device(hostname, device_os, transport="ssh"):
 
     if neighbours:
         if "global" in neighbours:
-            return parse_neighbours(neighbours["global"])
+            return parse_neighbours(neighbours["global"]['peers'])
 
     print("DEBUG: No BGP neighbours found on {}".format(hostname), file=sys.stderr)
 
@@ -152,6 +153,7 @@ def do_device(hostname, device_os, transport="ssh"):
 @click.option(
     "--username",
     type=str,
+    required=True,
     metavar="USERNAME",
     help="Username to log into router",
     envvar="BGPNEIGET_USERNAME",
@@ -159,6 +161,7 @@ def do_device(hostname, device_os, transport="ssh"):
 @click.option(
     "--password",
     type=str,
+    required=True,
     metavar="PASSWORD",
     help="Password to log into router",
     envvar="BGPNEIGET_PASSWORD",
@@ -171,6 +174,7 @@ def do_device(hostname, device_os, transport="ssh"):
     "--device",
     nargs=3,
     type=str,
+    required=True,
     metavar=("HOSTNAME", "OS", "TRANSPORT"),
     help="Single device to connect to along with the device OS and transport (SSH or Telnet)",
 )
