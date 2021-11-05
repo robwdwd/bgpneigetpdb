@@ -25,7 +25,6 @@ def parse_neighbours(neighbours):
         dict: Parsed neighbour list.
     """
     results = {}
-    pp.pprint(neighbours)
     for neighbour in neighbours:
         addr = ipaddress.ip_address(neighbour)
 
@@ -68,6 +67,7 @@ def parse_neighbours(neighbours):
             "ip_version": ipversion,
             "is_up": neighbours[neighbour]["is_up"],
             "is_enabled": neighbours[neighbour]["is_enabled"],
+            "uptime": neighbours[neighbour]["uptime"],
             "dual_stack": False,
         }
 
@@ -197,8 +197,6 @@ def cli(**cli_args):
     global prog_args
 
     prog_args = cli_args
-
-    pp.pprint(prog_args)
 
     if prog_args["asignore"] and prog_args["asexcept"]:
 

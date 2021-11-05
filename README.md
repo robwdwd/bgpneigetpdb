@@ -1,2 +1,2 @@
-# bgpneiget
-Get BGP neighbours from network devices
+# bgpneigetbdp
+Get BGP neighbours from network devices for use in a peering database
