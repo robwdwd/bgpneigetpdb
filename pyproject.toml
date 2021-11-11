@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bgpneigetpdb"
-version = "1.0.0"
+version = "1.0.1"
 description = "Get BGP Neighbours from network devices for PDB"
 authors = ["Rob Woodward <rob@emailplus.org>"]
 
@@ -10,14 +10,15 @@ repository = "https://github.com/robwdwd/bgpneigetpdb"
 include = ["README.md", "LICENSE"]
 
 [tool.poetry.dependencies]
-python = "^3.6, >=3.6.2"
+python = "^3.7"
 click = "^8.0.1"
 napalm = "^3.3.1"
+junos-eznc = "^2.6.3"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^6.2.5"
 black = "^21.7b0"
-flake8 = "^3.9.2"
+flake8 = "^4.0.1"
 pydocstyle = "^6.1.1"
 pylint = "^2.9.5"
 
