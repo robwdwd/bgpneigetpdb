@@ -122,8 +122,7 @@ def get_neighbours(host, device_os, transport="ssh"):
         with driver(host, prog_args["username"], prog_args["password"], optional_args=optional_args) as device:
             return device.get_bgp_neighbors()
     except Exception as error_msg:
-        print("ERROR: Connecting to {} failed: {}".format(host, error_msg), file=sys.stderr)
-        return None
+        sys.exit("FAILED: Connecting to {} failed: {}".format(host, error_msg))
 
 
 def do_device(hostname, device_os, transport="ssh"):
@@ -144,9 +143,7 @@ def do_device(hostname, device_os, transport="ssh"):
         if "global" in neighbours:
             return parse_neighbours(neighbours["global"]['peers'])
 
-    print("DEBUG: No BGP neighbours found on {}".format(hostname), file=sys.stderr)
-
-    return {}
+    sys.exit("No BGP neighbours found on {}".format(hostname))
 
 
 @click.command()
